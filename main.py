@@ -3,7 +3,7 @@ from os import path, mkdir, getcwd, listdir
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-from aiohttp import ClientConnectorError, ClientSession, TCPConnector
+from aiohttp import ClientError, ClientSession, TCPConnector
 import aiofiles
 
 
@@ -108,7 +108,7 @@ async def main():
                             await parse_article(session, name, f"{_day:02}", f"{_month:02}", "")
                         else:
                             await parse_article(session, name, f"{_day:02}", f"{_month:02}", f"-{_offset}")
-                    except ClientConnectorError:
+                    except ClientError:
                         continue
 
 
